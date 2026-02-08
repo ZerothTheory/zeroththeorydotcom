@@ -53,7 +53,8 @@ function useFade(initial: number = 0) {
 }
 
 // ─── Common Styles ───────────────────────────────────────────
-const mono: CSSProperties = { fontFamily: "'Courier New', Courier, monospace" };
+const shadow = '0 0 8px rgba(0,0,0,0.9), 0 0 20px rgba(0,0,0,0.7), 0 2px 4px rgba(0,0,0,0.8)';
+const mono: CSSProperties = { fontFamily: "'Courier New', Courier, monospace", textShadow: shadow };
 const abs: CSSProperties = { position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 };
 
 // ─── Intro Overlay ───────────────────────────────────────────
