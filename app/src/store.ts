@@ -32,6 +32,7 @@ interface DoctrineState {
   startTour: () => void;
   pauseTour: () => void;
   resumeTour: () => void;
+  resumeTourFromChapter: (id: number) => void;
   advanceTour: () => void;
   setTourSubPhase: (sub: TourSubPhase) => void;
   finishTour: () => void;
@@ -100,6 +101,17 @@ export const useDoctrineStore = create<DoctrineState>((set, get) => ({
       quoteIndex: 0,
     });
   },
+
+  resumeTourFromChapter: (id) =>
+    set({
+      tourPaused: false,
+      tourPhase: 'touring',
+      tourChapterIndex: id,
+      tourSubPhase: 'approach',
+      phaseElapsed: 0,
+      activeChapter: id,
+      quoteIndex: 0,
+    }),
 
   advanceTour: () => {
     const { tourSubPhase, tourChapterIndex } = get();
