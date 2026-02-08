@@ -1,10 +1,10 @@
 import React, { useRef, useEffect, useCallback } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { Stars } from '@react-three/drei';
 import * as THREE from 'three';
 
 import PostProcessing from './components/PostProcessing';
-import ParticleField from './components/ParticleField';
+import CosmicEnvironment from './components/CosmicEnvironment';
+import EnergyStreams from './components/EnergyStream';
 import ChapterNode from './components/ChapterNode';
 import DoctrineText from './components/DoctrineText';
 import TotalityScene from './scenes/TotalityScene';
@@ -58,8 +58,8 @@ function CinematicDirector() {
   const keys = useRef<Record<string, boolean>>({});
 
   // Camera animation refs
-  const introStartPos = useRef(new THREE.Vector3(0, 2, 80));
-  const introEndPos = useRef(new THREE.Vector3(0, 4, 22));
+  const introStartPos = useRef(new THREE.Vector3(0, 5, 100));
+  const introEndPos = useRef(new THREE.Vector3(0, 6, 28));
   const prevCamPos = useRef(new THREE.Vector3());
   const prevLookAt = useRef(new THREE.Vector3());
   const quoteTimer = useRef(0);
@@ -258,7 +258,7 @@ function CinematicDirector() {
           departEnd = new THREE.Vector3(...CHAPTERS[nextIdx].cameraApproach);
         } else {
           // Last chapter -> pull out for outro
-          departEnd = new THREE.Vector3(0, 15, 50);
+          departEnd = new THREE.Vector3(0, 20, 65);
         }
 
         const pos = departStart.clone().lerp(departEnd, e);
@@ -357,7 +357,7 @@ function CinematicDirector() {
     const outroStart = prevCamPos.current.clone().length() < 1
       ? new THREE.Vector3(0, 10, 40)
       : prevCamPos.current.clone();
-    const outroEnd = new THREE.Vector3(0, 12, 55);
+    const outroEnd = new THREE.Vector3(0, 15, 70);
 
     if (elapsed < 0.1) {
       prevCamPos.current.copy(camera.position);
@@ -377,26 +377,7 @@ function CinematicDirector() {
   return null;
 }
 
-// ─── Connector Lines ─────────────────────────────────────────
-function ConnectorLines() {
-  const geometry = React.useMemo(() => {
-    const geo = new THREE.BufferGeometry();
-    const verts: number[] = [];
-    for (let i = 0; i < CHAPTERS.length; i++) {
-      const a = CHAPTERS[i].position;
-      const b = CHAPTERS[(i + 1) % CHAPTERS.length].position;
-      verts.push(...a, ...b);
-    }
-    geo.setAttribute('position', new THREE.Float32BufferAttribute(verts, 3));
-    return geo;
-  }, []);
-
-  return (
-    <lineSegments geometry={geometry}>
-      <lineBasicMaterial color="#222244" transparent opacity={0.15} />
-    </lineSegments>
-  );
-}
+// ConnectorLines removed — replaced by EnergyStreams component
 
 // ─── Scene Content ───────────────────────────────────────────
 function SceneContent() {
@@ -406,22 +387,23 @@ function SceneContent() {
     <>
       <CinematicDirector />
 
-      {/* Ambient environment */}
-      <color attach="background" args={['#000005']} />
-      <fog attach="fog" args={['#000005', 60, 200]} />
-      <ambientLight intensity={0.15} />
+      {/* Deep space background */}
+      <color attach="background" args={['#000002']} />
+      <fog attach="fog" args={['#000005', 80, 400]} />
+      <ambientLight intensity={0.08} />
 
-      {/* Background stars */}
-      <Stars radius={150} depth={80} count={5000} factor={3} saturation={0.1} fade speed={0.5} />
-      <ParticleField />
-      <ConnectorLines />
+      {/* Cosmic environment: nebulas, stars, dust, galaxies */}
+      <CosmicEnvironment />
+
+      {/* Energy streams connecting chapters */}
+      <EnergyStreams />
 
       {/* Chapter Nodes (clickable orbs) */}
       {CHAPTERS.map((ch) => (
         <ChapterNode key={ch.id} chapter={ch} />
       ))}
 
-      {/* Chapter Scenes */}
+      {/* Chapter Scenes — cinematic 3D visualizations */}
       <TotalityScene />
       <RicochetScene />
       <ZerothDimensionScene />
@@ -440,8 +422,8 @@ function SceneContent() {
 export default function Experience() {
   return (
     <Canvas
-      camera={{ fov: 60, near: 0.1, far: 500, position: [0, 2, 80] }}
-      gl={{ antialias: true, toneMapping: THREE.ACESFilmicToneMapping, toneMappingExposure: 1.2 }}
+      camera={{ fov: 65, near: 0.1, far: 800, position: [0, 2, 80] }}
+      gl={{ antialias: true, toneMapping: THREE.ACESFilmicToneMapping, toneMappingExposure: 1.4 }}
       style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', background: '#000' }}
     >
       <SceneContent />

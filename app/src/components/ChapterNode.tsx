@@ -66,19 +66,19 @@ export default function ChapterNode({ chapter }: Props) {
             document.body.style.cursor = 'default';
           }}
         >
-          <sphereGeometry args={[0.8, 32, 32]} />
+          <sphereGeometry args={[1.2, 32, 32]} />
           <meshStandardMaterial
             color={chapter.color}
             emissive={chapter.emissiveColor}
-            emissiveIntensity={isActive ? 3 : hovered ? 2 : 1}
-            roughness={0.1}
-            metalness={0.8}
+            emissiveIntensity={isActive ? 4 : hovered ? 2.5 : 1.2}
+            roughness={0.05}
+            metalness={0.9}
           />
         </mesh>
 
         {/* Glow sphere */}
         <mesh ref={glowRef}>
-          <sphereGeometry args={[0.8, 16, 16]} />
+          <sphereGeometry args={[1.2, 16, 16]} />
           <meshBasicMaterial
             color={chapter.color}
             transparent
@@ -88,11 +88,23 @@ export default function ChapterNode({ chapter }: Props) {
           />
         </mesh>
 
+        {/* Outer halo ring */}
+        <mesh rotation={[Math.PI / 2, 0, 0]}>
+          <torusGeometry args={[2.5, 0.05, 8, 48]} />
+          <meshBasicMaterial
+            color={chapter.color}
+            transparent
+            opacity={isActive ? 0.3 : 0.08}
+            depthWrite={false}
+            blending={THREE.AdditiveBlending}
+          />
+        </mesh>
+
         {/* Point light for local illumination */}
         <pointLight
           color={chapter.color}
-          intensity={isActive ? 8 : 2}
-          distance={isActive ? 30 : 15}
+          intensity={isActive ? 12 : 3}
+          distance={isActive ? 40 : 20}
           decay={2}
         />
       </group>

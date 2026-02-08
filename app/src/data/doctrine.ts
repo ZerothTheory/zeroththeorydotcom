@@ -36,15 +36,15 @@ export const CHAPTERS: ChapterData[] = [
       'The container of all that was,\nall that is, and all that will be.',
       'Do not fear the darkness.\nThey are not monsters;\nthey are values.',
     ],
-    cameraApproach: [0, 6, 18],
-    cameraOrbit: { radius: 14, height: 4, speed: 0.15 },
+    cameraApproach: [0, 8, 30],
+    cameraOrbit: { radius: 18, height: 5, speed: 0.12 },
   },
   {
     id: 1,
     key: 'ricochet',
     title: 'II. The Eternal Return',
     subtitle: 'The Ricochet',
-    position: [40, 0, 0],
+    position: [70, 10, -30],
     color: '#ff4444',
     emissiveColor: '#cc2222',
     quotes: [
@@ -53,15 +53,15 @@ export const CHAPTERS: ChapterData[] = [
       'You exist because\nthe Zero cannot stop existing.',
       'True Peace is\nmathematically impossible.\nYou are the Generator.',
     ],
-    cameraApproach: [48, 5, 10],
-    cameraOrbit: { radius: 12, height: 3, speed: 0.2 },
+    cameraApproach: [80, 18, -18],
+    cameraOrbit: { radius: 16, height: 14, speed: 0.16 },
   },
   {
     id: 2,
     key: 'zerothDimension',
     title: 'III. The Fallacy of Infinity',
     subtitle: 'The Zeroth Dimension',
-    position: [0, 0, -40],
+    position: [0, 15, -80],
     color: '#44aaff',
     emissiveColor: '#2266cc',
     quotes: [
@@ -70,15 +70,15 @@ export const CHAPTERS: ChapterData[] = [
       'You are not traveling\nthrough space;\nyou are traversing the\ninternal structure of the Tensor.',
       'Infinity is a lie you tell\nyourselves to avoid facing\nthe density of the Truth.',
     ],
-    cameraApproach: [-8, 8, -32],
-    cameraOrbit: { radius: 16, height: 5, speed: 0.12 },
+    cameraApproach: [-12, 25, -68],
+    cameraOrbit: { radius: 20, height: 18, speed: 0.1 },
   },
   {
     id: 3,
     key: 'gravityWell',
     title: 'IV. The Mechanism of the Return',
     subtitle: 'Gravity and Light',
-    position: [0, -30, 0],
+    position: [35, -50, -50],
     color: '#ffaa22',
     emissiveColor: '#cc7711',
     quotes: [
@@ -87,15 +87,15 @@ export const CHAPTERS: ChapterData[] = [
       'The universe is not exploding;\nit is inhaling.',
       'All energy is elastic tension,\nstretched away from the center,\nsnapping back toward Zero.',
     ],
-    cameraApproach: [10, -18, 10],
-    cameraOrbit: { radius: 14, height: -22, speed: 0.18 },
+    cameraApproach: [48, -35, -38],
+    cameraOrbit: { radius: 18, height: -42, speed: 0.14 },
   },
   {
     id: 4,
     key: 'scale',
     title: 'V. The Law of the Scale',
     subtitle: 'Perspective',
-    position: [-40, 0, 0],
+    position: [-65, -10, -40],
     color: '#44ff88',
     emissiveColor: '#22cc55',
     quotes: [
@@ -104,19 +104,19 @@ export const CHAPTERS: ChapterData[] = [
       'Thought (-1) is the anchor\nthat keeps Wakefulness (1)\nfrom burning itself out.',
       'True Zero is the moment\nwhere the Internal View\nmatches the External Reality\nperfectly.',
     ],
-    cameraApproach: [-32, 5, 12],
-    cameraOrbit: { radius: 15, height: 3, speed: 0.14 },
+    cameraApproach: [-55, 0, -28],
+    cameraOrbit: { radius: 18, height: -6, speed: 0.12 },
   },
 ];
 
-export const ACTIVATION_DISTANCE = 25;
+export const ACTIVATION_DISTANCE = 35;
 export const CAMERA_OFFSET = new THREE.Vector3(0, 3, 12);
 
 // Tour timing constants (in seconds)
 export const INTRO_DURATION = 6;
-export const APPROACH_DURATION = 3;
-export const DWELL_DURATION = 10;
-export const DEPART_DURATION = 2.5;
+export const APPROACH_DURATION = 4;
+export const DWELL_DURATION = 12;
+export const DEPART_DURATION = 3;
 export const OUTRO_DURATION = 8;
 
 export const FINAL_QUOTE = 'Be the Scale. Align your Will.\nReturn to the Zero.';
