@@ -299,8 +299,8 @@ export default function ZerothDimensionScene() {
       {/* Accretion disk */}
       <points ref={accretionRef}>
         <bufferGeometry>
-          <bufferAttribute attach="attributes-position" array={accretionPositions} count={ACCRETION_PARTICLES} itemSize={3} />
-          <bufferAttribute attach="attributes-color" array={accretionColors} count={ACCRETION_PARTICLES} itemSize={3} />
+          <bufferAttribute attach="attributes-position" args={[accretionPositions, 3]} />
+          <bufferAttribute attach="attributes-color" args={[accretionColors, 3]} />
         </bufferGeometry>
         <pointsMaterial
           vertexColors
@@ -316,7 +316,7 @@ export default function ZerothDimensionScene() {
       {/* Infalling stars */}
       <points ref={infallingRef}>
         <bufferGeometry>
-          <bufferAttribute attach="attributes-position" array={infallingPositions} count={INFALLING_STARS} itemSize={3} />
+          <bufferAttribute attach="attributes-position" args={[infallingPositions, 3]} />
         </bufferGeometry>
         <pointsMaterial
           color="#88ccff"
@@ -332,7 +332,7 @@ export default function ZerothDimensionScene() {
       {/* Relativistic jet - up */}
       <points ref={jet1Ref}>
         <bufferGeometry>
-          <bufferAttribute attach="attributes-position" array={jetPositions1} count={JET_PARTICLES} itemSize={3} />
+          <bufferAttribute attach="attributes-position" args={[jetPositions1, 3]} />
         </bufferGeometry>
         <pointsMaterial
           color="#44aaff"
@@ -348,7 +348,7 @@ export default function ZerothDimensionScene() {
       {/* Relativistic jet - down */}
       <points ref={jet2Ref}>
         <bufferGeometry>
-          <bufferAttribute attach="attributes-position" array={jetPositions2} count={JET_PARTICLES} itemSize={3} />
+          <bufferAttribute attach="attributes-position" args={[jetPositions2, 3]} />
         </bufferGeometry>
         <pointsMaterial
           color="#44aaff"

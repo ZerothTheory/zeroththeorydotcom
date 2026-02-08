@@ -68,9 +68,9 @@ function NebulaCloud({
   return (
     <points ref={ref} position={position}>
       <bufferGeometry>
-        <bufferAttribute attach="attributes-position" array={positions} count={particleCount} itemSize={3} />
-        <bufferAttribute attach="attributes-color" array={colors} count={particleCount} itemSize={3} />
-        <bufferAttribute attach="attributes-size" array={sizes} count={particleCount} itemSize={1} />
+        <bufferAttribute attach="attributes-position" args={[positions, 3]} />
+        <bufferAttribute attach="attributes-color" args={[colors, 3]} />
+        <bufferAttribute attach="attributes-size" args={[sizes, 1]} />
       </bufferGeometry>
       <pointsMaterial
         vertexColors
@@ -129,7 +129,7 @@ function DustLane({
   return (
     <points ref={ref}>
       <bufferGeometry>
-        <bufferAttribute attach="attributes-position" array={positions} count={count} itemSize={3} />
+        <bufferAttribute attach="attributes-position" args={[positions, 3]} />
       </bufferGeometry>
       <pointsMaterial
         color={color}
@@ -199,8 +199,8 @@ function GalaxyArm({
   return (
     <points ref={ref} position={position} rotation={[tilt, 0, 0]}>
       <bufferGeometry>
-        <bufferAttribute attach="attributes-position" array={positions} count={count} itemSize={3} />
-        <bufferAttribute attach="attributes-color" array={colors} count={count} itemSize={3} />
+        <bufferAttribute attach="attributes-position" args={[positions, 3]} />
+        <bufferAttribute attach="attributes-color" args={[colors, 3]} />
       </bufferGeometry>
       <pointsMaterial
         vertexColors
@@ -245,7 +245,7 @@ function StarCluster({
   return (
     <points position={position}>
       <bufferGeometry>
-        <bufferAttribute attach="attributes-position" array={positions} count={count} itemSize={3} />
+        <bufferAttribute attach="attributes-position" args={[positions, 3]} />
       </bufferGeometry>
       <pointsMaterial
         color={color}
@@ -299,8 +299,8 @@ function DeepStarField({ count = 8000 }: { count?: number }) {
   return (
     <points>
       <bufferGeometry>
-        <bufferAttribute attach="attributes-position" array={positions} count={count} itemSize={3} />
-        <bufferAttribute attach="attributes-color" array={colors} count={count} itemSize={3} />
+        <bufferAttribute attach="attributes-position" args={[positions, 3]} />
+        <bufferAttribute attach="attributes-color" args={[colors, 3]} />
       </bufferGeometry>
       <pointsMaterial
         vertexColors
@@ -354,8 +354,8 @@ function TwinklingStars({ count = 500 }: { count?: number }) {
   return (
     <points ref={ref}>
       <bufferGeometry>
-        <bufferAttribute attach="attributes-position" array={positions} count={count} itemSize={3} />
-        <bufferAttribute attach="attributes-color" array={colors} count={count} itemSize={3} />
+        <bufferAttribute attach="attributes-position" args={[positions, 3]} />
+        <bufferAttribute attach="attributes-color" args={[colors, 3]} />
       </bufferGeometry>
       <pointsMaterial
         vertexColors

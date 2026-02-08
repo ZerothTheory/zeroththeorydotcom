@@ -235,15 +235,11 @@ export default function TotalityScene() {
         <bufferGeometry>
           <bufferAttribute
             attach="attributes-position"
-            array={spiralPositions}
-            count={GALAXY_ARMS * PARTICLES_PER_ARM}
-            itemSize={3}
+            args={[spiralPositions, 3]}
           />
           <bufferAttribute
             attach="attributes-color"
-            array={spiralColors}
-            count={GALAXY_ARMS * PARTICLES_PER_ARM}
-            itemSize={3}
+            args={[spiralColors, 3]}
           />
         </bufferGeometry>
         <pointsMaterial
@@ -262,9 +258,7 @@ export default function TotalityScene() {
         <bufferGeometry>
           <bufferAttribute
             attach="attributes-position"
-            array={corePositions}
-            count={CORE_PARTICLES}
-            itemSize={3}
+            args={[corePositions, 3]}
           />
         </bufferGeometry>
         <pointsMaterial
@@ -283,9 +277,7 @@ export default function TotalityScene() {
         <bufferGeometry>
           <bufferAttribute
             attach="attributes-position"
-            array={haloPositions}
-            count={HALO_PARTICLES}
-            itemSize={3}
+            args={[haloPositions, 3]}
           />
         </bufferGeometry>
         <pointsMaterial

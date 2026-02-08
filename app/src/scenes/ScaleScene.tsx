@@ -249,8 +249,8 @@ export default function ScaleScene() {
         {/* Shadow nebula particles */}
         <points ref={mindRef}>
           <bufferGeometry>
-            <bufferAttribute attach="attributes-position" array={mindPositions} count={MIND_PARTICLES} itemSize={3} />
-            <bufferAttribute attach="attributes-color" array={mindColors} count={MIND_PARTICLES} itemSize={3} />
+            <bufferAttribute attach="attributes-position" args={[mindPositions, 3]} />
+            <bufferAttribute attach="attributes-color" args={[mindColors, 3]} />
           </bufferGeometry>
           <pointsMaterial
             vertexColors
@@ -301,8 +301,8 @@ export default function ScaleScene() {
         {/* Star cluster particles */}
         <points ref={worldRef}>
           <bufferGeometry>
-            <bufferAttribute attach="attributes-position" array={worldPositions} count={WORLD_PARTICLES} itemSize={3} />
-            <bufferAttribute attach="attributes-color" array={worldColors} count={WORLD_PARTICLES} itemSize={3} />
+            <bufferAttribute attach="attributes-position" args={[worldPositions, 3]} />
+            <bufferAttribute attach="attributes-color" args={[worldColors, 3]} />
           </bufferGeometry>
           <pointsMaterial
             vertexColors
@@ -333,7 +333,7 @@ export default function ScaleScene() {
       {/* Energy flow particles */}
       <points ref={flowRef}>
         <bufferGeometry>
-          <bufferAttribute attach="attributes-position" array={flowData.positions} count={FLOW_PARTICLES} itemSize={3} />
+          <bufferAttribute attach="attributes-position" args={[flowData.positions, 3]} />
         </bufferGeometry>
         <pointsMaterial
           color="#66ffaa"
@@ -351,9 +351,7 @@ export default function ScaleScene() {
         <bufferGeometry>
           <bufferAttribute
             attach="attributes-position"
-            array={new Float32Array([-ARM_LENGTH, 0.5, 0, -ARM_LENGTH, -1, 0])}
-            count={2}
-            itemSize={3}
+            args={[new Float32Array([-ARM_LENGTH, 0.5, 0, -ARM_LENGTH, -1, 0]), 3]}
           />
         </bufferGeometry>
         <lineBasicMaterial color="#88ffaa" transparent opacity={0.3} />
@@ -362,9 +360,7 @@ export default function ScaleScene() {
         <bufferGeometry>
           <bufferAttribute
             attach="attributes-position"
-            array={new Float32Array([ARM_LENGTH, 0.5, 0, ARM_LENGTH, -1, 0])}
-            count={2}
-            itemSize={3}
+            args={[new Float32Array([ARM_LENGTH, 0.5, 0, ARM_LENGTH, -1, 0]), 3]}
           />
         </bufferGeometry>
         <lineBasicMaterial color="#88ffaa" transparent opacity={0.3} />

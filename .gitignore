@@ -1,0 +1,39 @@
+# Local Netlify folder
+.netlify
+
+# Node modules
+node_modules
+
+# Build directory
+build
+dist
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# VSCode settings
+.vscode
+
+# IDE settings
+.idea
+.cursor
+.cursorrules
+.cursorrules.md
+.cursorrules.txt
+.cursorrules.yml
+.cursorrules.yaml
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Linux
+.directory
+.cache
+.config

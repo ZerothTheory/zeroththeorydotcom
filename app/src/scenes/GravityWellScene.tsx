@@ -221,8 +221,8 @@ export default function GravityWellScene() {
       {/* Spiraling light particles */}
       <points ref={fallingRef}>
         <bufferGeometry>
-          <bufferAttribute attach="attributes-position" array={fallingData.positions} count={FALLING_PARTICLES} itemSize={3} />
-          <bufferAttribute attach="attributes-color" array={fallingData.colors} count={FALLING_PARTICLES} itemSize={3} />
+          <bufferAttribute attach="attributes-position" args={[fallingData.positions, 3]} />
+          <bufferAttribute attach="attributes-color" args={[fallingData.colors, 3]} />
         </bufferGeometry>
         <pointsMaterial
           vertexColors
@@ -238,7 +238,7 @@ export default function GravityWellScene() {
       {/* Waterfall cascade */}
       <points ref={waterfallRef}>
         <bufferGeometry>
-          <bufferAttribute attach="attributes-position" array={waterfallData.positions} count={WATERFALL_PARTICLES} itemSize={3} />
+          <bufferAttribute attach="attributes-position" args={[waterfallData.positions, 3]} />
         </bufferGeometry>
         <pointsMaterial
           color="#ffdd88"
@@ -254,7 +254,7 @@ export default function GravityWellScene() {
       {/* Curving light beams */}
       <points ref={beamRef}>
         <bufferGeometry>
-          <bufferAttribute attach="attributes-position" array={beamData.positions} count={LIGHT_BEAM_PARTICLES} itemSize={3} />
+          <bufferAttribute attach="attributes-position" args={[beamData.positions, 3]} />
         </bufferGeometry>
         <pointsMaterial
           color="#ffeecc"

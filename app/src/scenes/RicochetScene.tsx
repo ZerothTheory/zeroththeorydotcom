@@ -256,8 +256,8 @@ export default function RicochetScene() {
       {/* Starburst explosion particles */}
       <points ref={starburstRef}>
         <bufferGeometry>
-          <bufferAttribute attach="attributes-position" array={burstPositions} count={STARBURST_PARTICLES} itemSize={3} />
-          <bufferAttribute attach="attributes-color" array={burstColors} count={STARBURST_PARTICLES} itemSize={3} />
+          <bufferAttribute attach="attributes-position" args={[burstPositions, 3]} />
+          <bufferAttribute attach="attributes-color" args={[burstColors, 3]} />
         </bufferGeometry>
         <pointsMaterial
           vertexColors
@@ -273,7 +273,7 @@ export default function RicochetScene() {
       {/* Shockwave ring particles */}
       <points ref={ringRef}>
         <bufferGeometry>
-          <bufferAttribute attach="attributes-position" array={ringData.positions} count={RING_PARTICLES} itemSize={3} />
+          <bufferAttribute attach="attributes-position" args={[ringData.positions, 3]} />
         </bufferGeometry>
         <pointsMaterial
           color="#ffaa44"
@@ -302,7 +302,7 @@ export default function RicochetScene() {
       {/* Debris field */}
       <points ref={debrisRef}>
         <bufferGeometry>
-          <bufferAttribute attach="attributes-position" array={debrisPositions} count={DEBRIS_PARTICLES} itemSize={3} />
+          <bufferAttribute attach="attributes-position" args={[debrisPositions, 3]} />
         </bufferGeometry>
         <pointsMaterial
           color="#ff8844"
