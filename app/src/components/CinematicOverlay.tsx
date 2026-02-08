@@ -56,6 +56,13 @@ function useFade(initial: number = 0) {
 const shadow = '0 0 8px rgba(0,0,0,0.9), 0 0 20px rgba(0,0,0,0.7), 0 2px 4px rgba(0,0,0,0.8)';
 const mono: CSSProperties = { fontFamily: "'Courier New', Courier, monospace", textShadow: shadow };
 const abs: CSSProperties = { position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 };
+const textBg: CSSProperties = {
+  background: 'rgba(0,0,0,0.55)',
+  backdropFilter: 'blur(6px)',
+  WebkitBackdropFilter: 'blur(6px)',
+  borderRadius: 12,
+  padding: '20px 28px',
+};
 
 // ─── Intro Overlay ───────────────────────────────────────────
 function IntroOverlay() {
@@ -76,15 +83,17 @@ function IntroOverlay() {
 
   return (
     <div style={{ ...abs, display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', pointerEvents: 'none' }}>
-      <div style={title.style}>
-        <div style={{ ...mono, color: '#fff', fontSize: 32, letterSpacing: 10, fontWeight: 200, textAlign: 'center', lineHeight: '48px' }}>
-          THE DOCTRINE OF<br />TENSOR ZERO
+      <div style={{ ...textBg, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <div style={title.style}>
+          <div style={{ ...mono, color: '#fff', fontSize: 32, letterSpacing: 10, fontWeight: 200, textAlign: 'center', lineHeight: '48px' }}>
+            THE DOCTRINE OF<br />TENSOR ZERO
+          </div>
         </div>
-      </div>
-      <div style={{ ...subtitle.style, marginTop: 24, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <div style={{ width: 50, height: 1, backgroundColor: '#444', marginBottom: 16 }} />
-        <div style={{ ...mono, color: '#666', fontSize: 14, letterSpacing: 5, fontWeight: 300 }}>
-          A Calculus of Totality
+        <div style={{ ...subtitle.style, marginTop: 24, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+          <div style={{ width: 50, height: 1, backgroundColor: '#444', marginBottom: 16 }} />
+          <div style={{ ...mono, color: '#666', fontSize: 14, letterSpacing: 5, fontWeight: 300 }}>
+            A Calculus of Totality
+          </div>
         </div>
       </div>
     </div>
@@ -148,15 +157,17 @@ function TouringOverlay() {
         position: 'absolute', top: 70, left: 50, maxWidth: 400,
         opacity: titleOpacity, transition: 'opacity 800ms ease',
       }}>
-        <div style={{ width: 30, height: 3, background: chapter.color, marginBottom: 12 }} />
-        <div style={{ ...mono, fontSize: 13, letterSpacing: 4, fontWeight: 600, color: chapter.color, marginBottom: 4 }}>
-          {chapter.title.split('.')[0]}.
-        </div>
-        <div style={{ ...mono, color: '#fff', fontSize: 22, letterSpacing: 2, fontWeight: 300, marginBottom: 6 }}>
-          {chapter.title.split('. ')[1]}
-        </div>
-        <div style={{ ...mono, fontSize: 12, letterSpacing: 3, fontWeight: 400, color: chapter.color, opacity: 0.7 }}>
-          {chapter.subtitle}
+        <div style={textBg}>
+          <div style={{ width: 30, height: 3, background: chapter.color, marginBottom: 12 }} />
+          <div style={{ ...mono, fontSize: 13, letterSpacing: 4, fontWeight: 600, color: chapter.color, marginBottom: 4 }}>
+            {chapter.title.split('.')[0]}.
+          </div>
+          <div style={{ ...mono, color: '#fff', fontSize: 22, letterSpacing: 2, fontWeight: 300, marginBottom: 6 }}>
+            {chapter.title.split('. ')[1]}
+          </div>
+          <div style={{ ...mono, fontSize: 12, letterSpacing: 3, fontWeight: 400, color: chapter.color, opacity: 0.7 }}>
+            {chapter.subtitle}
+          </div>
         </div>
       </div>
 
@@ -166,10 +177,12 @@ function TouringOverlay() {
           position: 'absolute', bottom: 100, left: 50, right: 50, maxWidth: 600,
           opacity: quoteOpacity, transition: 'opacity 600ms ease',
         }}>
-          <span style={{ ...mono, color: '#ccc', fontSize: 18, letterSpacing: 1, fontWeight: 300, lineHeight: '28px' }}>
-            {typedQuote}
-            <span style={{ color: '#666', fontWeight: 100 }}>|</span>
-          </span>
+          <div style={textBg}>
+            <span style={{ ...mono, color: '#ccc', fontSize: 18, letterSpacing: 1, fontWeight: 300, lineHeight: '28px' }}>
+              {typedQuote}
+              <span style={{ color: '#666', fontWeight: 100 }}>|</span>
+            </span>
+          </div>
         </div>
       )}
 
@@ -282,54 +295,56 @@ function FreeExploreOverlay() {
           display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center',
           opacity: panelOpacity, transition: 'opacity 800ms ease',
         }}>
-          {/* Accent bar */}
-          <div style={{ width: 30, height: 3, background: activeData.color, marginBottom: 16 }} />
+          <div style={{ ...textBg, display: 'flex', flexDirection: 'column', alignItems: 'center', maxWidth: 620 }}>
+            {/* Accent bar */}
+            <div style={{ width: 30, height: 3, background: activeData.color, marginBottom: 16 }} />
 
-          {/* Chapter number */}
-          <div style={{ ...mono, fontSize: 13, letterSpacing: 4, fontWeight: 600, color: activeData.color, marginBottom: 6 }}>
-            {activeData.title.split('.')[0]}.
-          </div>
+            {/* Chapter number */}
+            <div style={{ ...mono, fontSize: 13, letterSpacing: 4, fontWeight: 600, color: activeData.color, marginBottom: 6 }}>
+              {activeData.title.split('.')[0]}.
+            </div>
 
-          {/* Chapter title */}
-          <div style={{ ...mono, color: '#fff', fontSize: 24, letterSpacing: 3, fontWeight: 300, marginBottom: 8, textAlign: 'center' }}>
-            {activeData.title.split('. ')[1]}
-          </div>
+            {/* Chapter title */}
+            <div style={{ ...mono, color: '#fff', fontSize: 24, letterSpacing: 3, fontWeight: 300, marginBottom: 8, textAlign: 'center' }}>
+              {activeData.title.split('. ')[1]}
+            </div>
 
-          {/* Subtitle */}
-          <div style={{ ...mono, fontSize: 12, letterSpacing: 3, fontWeight: 400, color: activeData.color, opacity: 0.7, marginBottom: 28 }}>
-            {activeData.subtitle}
-          </div>
+            {/* Subtitle */}
+            <div style={{ ...mono, fontSize: 12, letterSpacing: 3, fontWeight: 400, color: activeData.color, opacity: 0.7, marginBottom: 28 }}>
+              {activeData.subtitle}
+            </div>
 
-          {/* Typewriter quote */}
-          <div style={{ maxWidth: 560, textAlign: 'center', minHeight: 56 }}>
-            <span style={{ ...mono, color: '#ccc', fontSize: 18, letterSpacing: 1, fontWeight: 300, lineHeight: '28px' }}>
-              {typedQuote}
-              <span style={{ color: '#666', fontWeight: 100 }}>|</span>
-            </span>
-          </div>
+            {/* Typewriter quote */}
+            <div style={{ maxWidth: 560, textAlign: 'center', minHeight: 56 }}>
+              <span style={{ ...mono, color: '#ccc', fontSize: 18, letterSpacing: 1, fontWeight: 300, lineHeight: '28px' }}>
+                {typedQuote}
+                <span style={{ color: '#666', fontWeight: 100 }}>|</span>
+              </span>
+            </div>
 
-          {/* Continue button (appears after 2 full loops) */}
-          <div style={{
-            marginTop: 32,
-            opacity: showContinue ? 1 : 0,
-            transition: 'opacity 600ms ease',
-            pointerEvents: showContinue ? 'auto' : 'none',
-          }}>
-            <button
-              onClick={handleContinue}
-              style={{
-                ...mono,
-                background: 'rgba(255,255,255,0.08)',
-                padding: '10px 28px', borderRadius: 20,
-                border: `1px solid ${activeData.color}44`,
-                color: activeData.color, fontSize: 13, letterSpacing: 3, fontWeight: 400,
-                cursor: 'pointer',
-              }}
-              onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(255,255,255,0.15)'; }}
-              onMouseLeave={(e) => { e.currentTarget.style.background = 'rgba(255,255,255,0.08)'; }}
-            >
-              Continue
-            </button>
+            {/* Continue button (appears after 2 full loops) */}
+            <div style={{
+              marginTop: 32,
+              opacity: showContinue ? 1 : 0,
+              transition: 'opacity 600ms ease',
+              pointerEvents: showContinue ? 'auto' : 'none',
+            }}>
+              <button
+                onClick={handleContinue}
+                style={{
+                  ...mono,
+                  background: 'rgba(255,255,255,0.08)',
+                  padding: '10px 28px', borderRadius: 20,
+                  border: `1px solid ${activeData.color}44`,
+                  color: activeData.color, fontSize: 13, letterSpacing: 3, fontWeight: 400,
+                  cursor: 'pointer',
+                }}
+                onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(255,255,255,0.15)'; }}
+                onMouseLeave={(e) => { e.currentTarget.style.background = 'rgba(255,255,255,0.08)'; }}
+              >
+                Continue
+              </button>
+            </div>
           </div>
         </div>
       )}
@@ -388,7 +403,7 @@ function OutroOverlay() {
       <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 40, background: '#000', zIndex: 20 }} />
       <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: 40, background: '#000', zIndex: 20 }} />
 
-      <div style={{ ...fade.style, display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '0 40px' }}>
+      <div style={{ ...fade.style, ...textBg, display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '32px 48px' }}>
         <div style={{ width: 40, height: 1, background: '#444', margin: '20px 0' }} />
         <div style={{
           ...mono, color: '#ddd', fontSize: 22, letterSpacing: 2,
