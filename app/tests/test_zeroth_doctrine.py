@@ -179,7 +179,7 @@ class TestCurlSmoke(unittest.TestCase):
 
     def test_08_favicon_loads(self):
         """Favicon is served."""
-        r = self._curl(BASE_URL + "/favicon.ico")
+        r = self._curl(BASE_URL + "/favicon.png")
         self.assertEqual(r["status"], 200, "Favicon not found")
         print(f"  PASS: Favicon loads ({r['size']} bytes)")
 
