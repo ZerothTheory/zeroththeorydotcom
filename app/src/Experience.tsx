@@ -23,6 +23,7 @@ import {
   OUTRO_DURATION,
 } from './data/doctrine';
 import { useDoctrineStore } from './store';
+import { touchMove, touchLook } from './touchInput';
 
 // ─── Easing ──────────────────────────────────────────────────
 function easeInOutCubic(t: number): number {
@@ -324,6 +325,12 @@ function CinematicDirector() {
     if (keys.current['q'] || keys.current['shift']) accel.sub(up);
     if (keys.current['e'] || keys.current[' ']) accel.add(up);
 
+    // Touch joystick input (mobile)
+    if (Math.abs(touchMove.x) > 0.1 || Math.abs(touchMove.y) > 0.1) {
+      accel.add(right.clone().multiplyScalar(touchMove.x));
+      accel.add(forward.clone().multiplyScalar(-touchMove.y));
+    }
+
     if (accel.lengthSq() > 0) {
       accel.normalize().multiplyScalar(speed * dt);
       velocity.current.add(accel);
@@ -331,6 +338,16 @@ function CinematicDirector() {
 
     velocity.current.multiplyScalar(damping);
     camera.position.add(velocity.current);
+
+    // Touch look input (mobile)
+    if (touchLook.dx !== 0 || touchLook.dy !== 0) {
+      yaw.current -= touchLook.dx * 0.004;
+      pitch.current -= touchLook.dy * 0.004;
+      pitch.current = Math.max(-Math.PI / 3, Math.min(Math.PI / 3, pitch.current));
+      touchLook.dx = 0;
+      touchLook.dy = 0;
+    }
+
     camera.quaternion.setFromEuler(
       new THREE.Euler(pitch.current, yaw.current, 0, 'YXZ')
     );

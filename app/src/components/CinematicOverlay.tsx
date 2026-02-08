@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, type CSSProperties } from 'react';
 import { useDoctrineStore } from '../store';
 import { CHAPTERS, FINAL_QUOTE } from '../data/doctrine';
+import { isTouchDevice } from '../touchInput';
 
 // ─── Typewriter Hook ─────────────────────────────────────────
 function useTypewriter(text: string, speed: number = 30, active: boolean = true) {
@@ -284,7 +285,10 @@ function FreeExploreOverlay() {
       {/* Controls hint */}
       <div style={{ position: 'absolute', top: 16, left: '50%', transform: 'translateX(-50%)' }}>
         <span style={{ ...mono, color: '#444', fontSize: 10, letterSpacing: 1 }}>
-          WASD to fly{'  |  '}Drag to look{'  |  '}Click orbs to visit
+          {isTouchDevice
+            ? 'Drag to fly  |  Look around  |  Tap orbs to visit'
+            : <>WASD to fly{'  |  '}Drag to look{'  |  '}Click orbs to visit</>
+          }
         </span>
       </div>
 
