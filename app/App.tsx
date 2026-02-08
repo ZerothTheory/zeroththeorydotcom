@@ -1,22 +1,11 @@
-import React from 'react';
-import { StyleSheet, View } from 'react-native';
-import { StatusBar } from 'expo-status-bar';
 import Experience from './src/Experience';
 import CinematicOverlay from './src/components/CinematicOverlay';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <StatusBar style="light" hidden />
+    <div style={{ width: '100vw', height: '100vh', background: '#000', overflow: 'hidden', position: 'relative' }}>
       <Experience />
       <CinematicOverlay />
-    </View>
+    </div>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#000',
-  },
-});
